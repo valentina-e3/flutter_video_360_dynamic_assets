@@ -138,4 +138,14 @@ class MethodChannelVideo360 extends Video360Platform {
       return 0;
     }
   }
+
+  @override
+  Future<void> changeAssetSource(int viewId, String assetPath) async {
+    try {
+      var methodChannel = MethodChannel('${channelPrefix}_$viewId');
+      await methodChannel.invokeMethod<void>('changeAssetSource');
+    } on PlatformException catch (e) {
+      debugPrint('${e.code}: ${e.message}');
+    }
+  }
 }

@@ -89,4 +89,8 @@ class Video360Controller {
   Future<int> getDuration() async {
     return await Video360Platform.instance.getDuration(id);
   }
+
+  Future<void> changeAssetSource(String assetPath) async {
+    await Video360Platform.instance.changeAssetSource(id, assetPath);
+  }
 }

@@ -107,6 +107,16 @@ class Video360View(context: Context,
             "exitApp" -> {
                 android.os.Process.killProcess(android.os.Process.myPid())
             }
+            "changeAssetSource" -> {
+                val assetPath: String? = call.argument("assetPath")
+                val vidUrl: String? = if (assetPath != null) {
+                    val key: String? = loader.getLookupKeyForAsset(assetPath)
+                    "asset:///" + key
+                } else {
+                    null
+                }
+                vidUrl?.let {vUrl -> videoView.changeMediaSource(vUrl)}
+            }
             else -> {
             }
         }

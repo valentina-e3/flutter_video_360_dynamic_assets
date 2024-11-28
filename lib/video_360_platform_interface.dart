@@ -67,4 +67,8 @@ abstract class Video360Platform extends PlatformInterface {
   Future<int> getDuration(int viewId) async {
     throw UnimplementedError('getDuration() has not been implemented.');
   }
+
+  Future<void> changeAssetSource(int viewId, String assetPath) async {
+    throw UnimplementedError('changeAssetSource() has not been implemented.');
+  }
 }
