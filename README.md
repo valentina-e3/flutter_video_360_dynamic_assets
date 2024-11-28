@@ -1,7 +1,10 @@
-# video_360
+# Custom video_360 
 
-Simple 360 video player plugin
-(Android, iOS support)
+A fork of the Flutter Video 360 package with added functionality for:
+- Loading 360 videos from assets.
+- Dynamically switching video sources from assets at runtime.
+
+**Note:** This functionality is only implemented for Android.
 
 # Notice
 
@@ -50,6 +53,7 @@ Add Video360View:
 Video360View(
     onVideo360ViewCreated: _onVideo360ViewCreated,
     url: YOUR_360_VIDEO_URL,    
+    assetPath: YOUR_ASSET_PATH // added assetPath attribute
     isRepeat: true, // defalut : false
     onPlayInfo: (Video360PlayInfo info) {
         // Play info Callback
@@ -63,7 +67,8 @@ Video360Controller Method
 > stop() : video stop<br>
 > reset() : video reset<br>
 > jumpTo() : video jump, parameter is millisecond<br>
-> seekTo() : video seek, parameter is plus, minus millisecond
+> seekTo() : video seek, parameter is plus, minus millisecond <br>
+> **changeAssetSource(String assetPath)** : added method for changing video source from assets
 
 sample code:
 
