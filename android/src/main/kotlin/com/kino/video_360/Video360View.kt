@@ -13,6 +13,9 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.view.TextureRegistry
+import io.flutter.FlutterInjector
+import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.embedding.engine.loader.FlutterLoader
 
 class Video360View(context: Context,
                    messenger: BinaryMessenger,
@@ -26,6 +29,8 @@ class Video360View(context: Context,
     private lateinit var activityLifecycleCallbacks: Application.ActivityLifecycleCallbacks
 
     private var videoView: Video360UIView
+
+    private val loader: FlutterLoader = FlutterInjector.instance().flutterLoader()
 
     init {
         methodChannel.setMethodCallHandler(this)
@@ -43,8 +48,17 @@ class Video360View(context: Context,
         when (call.method) {
             "init" -> {
                 val url: String? = call.argument("url")
+                val assetPath: String? = call.argument("assetPath")
                 val isRepeat: Boolean = call.argument("isRepeat") ?: false
-                url?.let {
+                val vidUrl: String? = if (url != null) {
+                    url
+                } else if (assetPath != null){    
+                    val key: String? = loader.getLookupKeyForAsset(assetPath)
+                    "asset:///" + key
+                }else {
+                    null
+                }
+                vidUrl?.let {
                     videoView.initializePlayer(it, false, isRepeat)
                 }
             }

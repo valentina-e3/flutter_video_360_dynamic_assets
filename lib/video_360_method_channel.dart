@@ -10,12 +10,13 @@ class MethodChannelVideo360 extends Video360Platform {
   final String channelPrefix = 'kino_video_360';
 
   @override
-  Future<void> init(int viewId, String url, double width, double height,
-      bool isRepeat) async {
+  Future<void> init(int viewId, String url, String? assetPath, double width,
+      double height, bool isRepeat) async {
     try {
       var methodChannel = MethodChannel('${channelPrefix}_$viewId');
       await methodChannel.invokeMethod<void>('init', {
         'url': url,
+        'assetPath': assetPath,
         'width': width,
         'height': height,
         'isRepeat': isRepeat,

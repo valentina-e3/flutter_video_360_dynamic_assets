@@ -9,6 +9,7 @@ class Video360Controller {
   Video360Controller({
     required this.id,
     this.url,
+    this.assetPath,
     this.width,
     this.height,
     this.isRepeat,
@@ -19,6 +20,7 @@ class Video360Controller {
 
   final int id;
   final String? url;
+  final String? assetPath;
   final double? width;
   final double? height;
   final bool? isRepeat;
@@ -43,7 +45,8 @@ class Video360Controller {
           duration: duration, total: total, isPlaying: isPlay));
     });
 
-    await Video360Platform.instance.init(id, url, width, height, isRepeat);
+    await Video360Platform.instance
+        .init(id, url, assetPath, width, height, isRepeat);
   }
 
   Future<void> dispose() async {

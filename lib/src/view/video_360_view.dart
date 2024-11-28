@@ -15,6 +15,7 @@ class Video360View extends StatefulWidget {
     Key? key,
     required this.onVideo360ViewCreated,
     this.url,
+    this.assetPath,
     this.isRepeat = false,
     this.useAndroidViewSurface = false,
     this.onPlayInfo,
@@ -22,6 +23,7 @@ class Video360View extends StatefulWidget {
 
   final Video360ViewCreatedCallback onVideo360ViewCreated;
   final String? url;
+  final String? assetPath;
   final bool? isRepeat;
   final bool? useAndroidViewSurface;
   final Video360ControllerPlayInfo? onPlayInfo;
@@ -83,6 +85,7 @@ class _Video360ViewState extends State<Video360View>
     controller = Video360Controller(
       id: id,
       url: widget.url,
+      assetPath: widget.assetPath,
       width: width,
       height: height,
       isRepeat: widget.isRepeat,
