@@ -245,4 +245,18 @@ class Video360UIView : FrameLayout, Player.Listener {
         }
         return 0L
     }
+
+    fun changeMediaSource(newUrl: String) {
+        videoUrl = newUrl 
+    
+        val mediaSource = buildMediaSource(newUrl, buildDataSourceFactory(context, ""))
+        mediaSource?.let {
+            player?.stop() 
+            player?.clearMediaItems() 
+            player?.setMediaSource(it) 
+            player?.prepare() 
+            player?.playWhenReady = isAutoPlay 
+            vrPlayer.onResume()
+        }
+    }
 }
